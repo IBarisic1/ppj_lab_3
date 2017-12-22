@@ -1,8 +1,8 @@
 package hr.fer.ppj.labos.lab3;
 
-public class PrimarniIzraz extends Izraz{
+public class UnarniIzraz extends Izraz{
 	
-	public PrimarniIzraz(CvorGenerativnogStabla trenutniCvor) {
+	public UnarniIzraz(CvorGenerativnogStabla trenutniCvor) {
 		super(trenutniCvor);
 	}
 	

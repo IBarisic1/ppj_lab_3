@@ -24,7 +24,7 @@ public class SemantickiAnalizator {
 	 * String je ime funkcije, a drugi String je tip deklaracije funkcije.
 	 */
 	Map<String, String> deklariraneFunkcije = new HashMap<>();
-	
+
 	//Treba li dopustiti overloading?
 	
 	public static void main(String[] args) {
@@ -34,5 +34,8 @@ public class SemantickiAnalizator {
 		ParserGenerativnogStabla parser = new ParserGenerativnogStabla(sc);
 		
 		GenerativnoStablo gen = parser.parsirajStablo();
+		
+		PrijevodnaJedinica pj = 
+				(PrijevodnaJedinica) Tvornica.napraviAtributniCvor(gen.getKorijen());
 	}
 }

@@ -40,6 +40,8 @@ public abstract class Tvornica {
 			return new JednakosniIzraz(g);
 		else if(imeCvoraGenerativnogStabla.equals("<lista_argumenata>"))
 			return new ListaArgumenata(g);
+		else if(imeCvoraGenerativnogStabla.equals("<lista_deklaracija>"))
+			return new ListaArgumenata(g);
 		else if(imeCvoraGenerativnogStabla.equals("<lista_init_deklaratora>"))
 			return new ListaInitDeklaratora(g);
 		else if(imeCvoraGenerativnogStabla.equals("<lista_izraza_pridruzivanja>"))

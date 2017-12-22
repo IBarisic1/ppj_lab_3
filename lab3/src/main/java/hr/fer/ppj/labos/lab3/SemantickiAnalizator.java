@@ -27,7 +27,7 @@ public class SemantickiAnalizator {
 
 	//Treba li dopustiti overloading?
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		Scanner sc = new Scanner(System.in);
 		

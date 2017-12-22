@@ -2,9 +2,27 @@ package hr.fer.ppj.labos.lab3;
 
 public abstract class Tvornica {
 	
-	public static CvorAtributnogStabla napraviAtributniCvor(CvorGenerativnogStabla g) {
+	public static CvorAtributnogStabla napraviAtributniCvor(CvorGenerativnogStabla g)
+									throws Exception{
 		
 		String imeCvoraGenerativnogStabla = g.getUniformniZnak();
+		
+//		String[] podijeljenoIme = imeCvoraGenerativnogStabla.substring(1, 
+//				imeCvoraGenerativnogStabla.length() - 1).split("_");
+//		StringBuilder sb = new StringBuilder();
+//		String paket = CvorAtributnogStabla.class.getPackageName();
+//		sb.append(paket + ".");
+//		for(int i = 0; i < podijeljenoIme.length; i++) {
+//			char[] znakovi = podijeljenoIme[i].toCharArray();
+//			znakovi[0] = Character.toUpperCase(znakovi[0]);
+//			podijeljenoIme[i] = new String(znakovi);
+//			sb.append(podijeljenoIme[i]);
+//		}
+//		
+//		String punoIme = sb.toString();
+//		
+//		return (CvorAtributnogStabla) Class.forName(punoIme).
+//				getConstructor(CvorGenerativnogStabla.class).newInstance(g);
 		
 		if(imeCvoraGenerativnogStabla.equals("<aditivni_izraz>"))
 			return new AditivniIzraz(g);

@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public class SemantickiAnalizator {
 	
+	TablicaLokalnihImena tablicaLokalnihImena = new TablicaLokalnihImena();
+	
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);

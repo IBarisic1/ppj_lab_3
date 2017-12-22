@@ -1,6 +1,6 @@
 package hr.fer.ppj.labos.lab3;
 
-public class ImeTipa {
+public class ImeTipa implements CvorAtributnogStabla{
 
 	private String tip;
 

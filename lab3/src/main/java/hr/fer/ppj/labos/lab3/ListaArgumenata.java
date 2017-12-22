@@ -2,7 +2,7 @@ package hr.fer.ppj.labos.lab3;
 
 import java.util.List;
 
-public class ListaArgumenata {
+public class ListaArgumenata implements CvorAtributnogStabla{
 	
 	private List<String> tipovi;
 	

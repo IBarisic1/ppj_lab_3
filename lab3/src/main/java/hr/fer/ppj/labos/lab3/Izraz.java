@@ -1,6 +1,6 @@
 package hr.fer.ppj.labos.lab3;
 
-public class Izraz {
+public class Izraz implements CvorAtributnogStabla{
 	
 	private String tip;
 	private boolean l_izraz;

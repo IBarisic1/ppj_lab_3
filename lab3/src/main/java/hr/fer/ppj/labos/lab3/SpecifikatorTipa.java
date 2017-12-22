@@ -1,6 +1,6 @@
 package hr.fer.ppj.labos.lab3;
 
-public class SpecifikatorTipa {
+public class SpecifikatorTipa implements CvorAtributnogStabla{
 	
 	private String tip;
 	

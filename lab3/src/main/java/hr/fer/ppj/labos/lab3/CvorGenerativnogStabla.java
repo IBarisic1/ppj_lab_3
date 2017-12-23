@@ -71,7 +71,7 @@ public class CvorGenerativnogStabla {
 	public String desnaStranaProdukcije() {
 		StringBuilder sb = new StringBuilder();
 		for (CvorGenerativnogStabla cvorGenerativnogStabla : djeca) {
-			sb.append(cvorGenerativnogStabla.getUniformniZnak());
+			sb.append(cvorGenerativnogStabla + " ");
 		}
 		return sb.toString();
 	}
@@ -83,10 +83,11 @@ public class CvorGenerativnogStabla {
 		else {
 			StringBuilder sb = new StringBuilder();
 			sb.append(uniformniZnak);
-			sb.append(" ");
+			sb.append("(");
 			sb.append(brojRetka);
-			sb.append(" ");
+			sb.append(",");
 			sb.append(leksickaJedinka);
+			sb.append(")");
 			return sb.toString();
 		}
 	}

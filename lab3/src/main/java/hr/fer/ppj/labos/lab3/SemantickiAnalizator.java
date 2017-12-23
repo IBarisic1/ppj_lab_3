@@ -7,13 +7,14 @@ import java.util.Set;
 
 public class SemantickiAnalizator {
 	
-	TablicaLokalnihImena tablicaLokalnihImena = new TablicaLokalnihImena();
+	static TablicaLokalnihImena tablicaLokalnihImena = new TablicaLokalnihImena();
 	
 	/**
 	 * String je tip koji implicitno pretvaramo, a Set<String> je popis
 	 * tipova u koje se može implicitno pretvoriti.
 	 */
 	static Map<String, Set<String>> implicitnaPretvorba = new HashMap<>();
+	//TODO napuniti tablicu s implicitnom pretvorbom
 	
 	/**
 	 * String je ime funkcije, drugi String je tip deklaracije funkcije.
@@ -63,5 +64,10 @@ public class SemantickiAnalizator {
 	public static boolean jeLIzraz(String tip) {
 		if(tip.equals("int") || tip.equals("char")) return true;
 		return false;
+	}
+	
+	public static void ispisiGreskuUProdukciji(CvorGenerativnogStabla g) {
+		System.out.println(g + " ::= " + g.desnaStranaProdukcije());
+		System.exit(0);
 	}
 }

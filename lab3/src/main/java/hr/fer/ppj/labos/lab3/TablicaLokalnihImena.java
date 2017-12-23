@@ -16,7 +16,7 @@ public class TablicaLokalnihImena {
 		tablicaLokalnihImena.put(ime, tip);
 	}
 	
-	public boolean tablicaSadrziIme(String s) {
+	public boolean sadrziIme(String s) {
 		return tablicaLokalnihImena.containsKey(s);
 	}
 
@@ -35,7 +35,7 @@ public class TablicaLokalnihImena {
 	public boolean jeDeklarirano(String ime) {
 		TablicaLokalnihImena trenutnaTablica = this;
 		while(trenutnaTablica != null) {
-			if(trenutnaTablica.tablicaSadrziIme(ime)) return true;
+			if(trenutnaTablica.sadrziIme(ime)) return true;
 			trenutnaTablica = trenutnaTablica.prethodnaTablica;
 		}
 		return false;

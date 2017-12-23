@@ -67,6 +67,14 @@ public class CvorGenerativnogStabla {
 	public void setIspisatiSamoUniformniZnak(boolean jeNezavrsniZnak) {
 		this.ispisatiSamoUniformniZnak = jeNezavrsniZnak;
 	}
+	
+	public String desnaStranaProdukcije() {
+		StringBuilder sb = new StringBuilder();
+		for (CvorGenerativnogStabla cvorGenerativnogStabla : djeca) {
+			sb.append(cvorGenerativnogStabla.getUniformniZnak());
+		}
+		return sb.toString();
+	}
 
 	@Override
 	public String toString() {

@@ -13,17 +13,17 @@ public class SemantickiAnalizator {
 	 * String je tip koji implicitno pretvaramo, a Set<String> je popis
 	 * tipova u koje se može implicitno pretvoriti.
 	 */
-	Map<String, Set<String>> implicitnaPretvorba = new HashMap<>();
+	static Map<String, Set<String>> implicitnaPretvorba = new HashMap<>();
 	
 	/**
 	 * String je ime funkcije, drugi String je tip deklaracije funkcije.
 	 */
-	Map<String, String> definiraneFunkcije = new HashMap<>();
+	static Map<String, String> definiraneFunkcije = new HashMap<>();
 	
 	/**
 	 * String je ime funkcije, a drugi String je tip deklaracije funkcije.
 	 */
-	Map<String, String> deklariraneFunkcije = new HashMap<>();
+	static Map<String, String> deklariraneFunkcije = new HashMap<>();
 
 	//Treba li dopustiti overloading?
 	
@@ -37,5 +37,25 @@ public class SemantickiAnalizator {
 		
 		PrijevodnaJedinica pj = 
 				(PrijevodnaJedinica) Tvornica.napraviAtributniCvor(gen.getKorijen());
+		
+		pj.provjeri();
+		
+		//provjere na kraju
+		String tipMain = "funkcija(void -> int)";
+		if(!tipMain.equals(definiraneFunkcije.get("main"))){
+			System.out.println("main");
+			return;
+		}
+		
+		for (Map.Entry<String, String> deklariranaFunkcija :
+				deklariraneFunkcije.entrySet()) {
+			String imeFunkcije = deklariranaFunkcija.getKey();
+			String tipFunkcije = deklariranaFunkcija.getValue();
+			if(!definiraneFunkcije.containsKey(imeFunkcije) ||
+					!tipFunkcije.equals(definiraneFunkcije.get(imeFunkcije))) {
+				System.out.println("funkcija");
+				return;
+			}		
+		}
 	}
 }

@@ -18,7 +18,7 @@ public class PrimarniIzraz extends Izraz implements CvorAtributnogStabla{
 					getLeksickaJedinka();
 			
 			if(SemantickiAnalizator.tablicaLokalnihImena.
-					sadrziIme(imeIdentifikatora)) {
+					jeDeklarirano(imeIdentifikatora)) {
 				tip = SemantickiAnalizator.tablicaLokalnihImena.
 						dohvatiTipZaIme(imeIdentifikatora);
 				l_izraz = SemantickiAnalizator.jeLIzraz(tip);

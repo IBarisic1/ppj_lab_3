@@ -2,8 +2,8 @@ package hr.fer.ppj.labos.lab3;
 
 public abstract class Tvornica {
 	
-	public static CvorAtributnogStabla napraviAtributniCvor(CvorGenerativnogStabla g)
-									throws Exception{
+	public static CvorAtributnogStabla 
+				napraviAtributniCvor(CvorGenerativnogStabla g){
 		
 		String imeCvoraGenerativnogStabla = g.getUniformniZnak();
 		

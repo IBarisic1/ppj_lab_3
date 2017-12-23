@@ -2,10 +2,10 @@ package hr.fer.ppj.labos.lab3;
 
 public class Izraz implements CvorAtributnogStabla{
 	
-	private String tip;
-	private boolean l_izraz;
+	protected String tip;
+	protected boolean l_izraz;
 	
-	private CvorGenerativnogStabla trenutniCvor;
+	protected CvorGenerativnogStabla trenutniCvor;
 	
 	public Izraz(CvorGenerativnogStabla trenutniCvor) {
 		this.trenutniCvor = trenutniCvor;

@@ -73,7 +73,7 @@ public class CvorGenerativnogStabla {
 		for (CvorGenerativnogStabla cvorGenerativnogStabla : djeca) {
 			sb.append(cvorGenerativnogStabla + " ");
 		}
-		return sb.toString();
+		return sb.toString().trim();
 	}
 
 	@Override

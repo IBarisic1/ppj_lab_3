@@ -78,7 +78,7 @@ public class PostfiksIzraz extends Izraz implements CvorAtributnogStabla{
 			for(int i = 0; i < paramTip.length; i++) {
 				if(!SemantickiAnalizator.implicitnaPretvorba.
 						get(listaArgumenata.getTipovi().get(i)).
-						contains(paramTip[i])) 
+						contains(paramTip[i].trim())) 
 					SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			}
 			

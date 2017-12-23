@@ -57,5 +57,11 @@ public class SemantickiAnalizator {
 				return;
 			}		
 		}
+		
+	}
+	
+	public static boolean jeLIzraz(String tip) {
+		if(tip.equals("int") || tip.equals("char")) return true;
+		return false;
 	}
 }

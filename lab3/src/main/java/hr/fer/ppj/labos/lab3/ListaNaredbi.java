@@ -9,6 +9,15 @@ public class ListaNaredbi implements CvorAtributnogStabla{
 	}
 	
 	public void provjeri() {
-		
+		if (trenutniCvor.desnaStranaProdukcije().equals("<naredba> ")) {
+			Naredba naredba = (Naredba) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			naredba.provjeri();
+		} else if (trenutniCvor.desnaStranaProdukcije()
+				.equals("<lista_naredbi> <naredba> ")) {
+			ListaNaredbi listaNaredbi = (ListaNaredbi) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			listaNaredbi.provjeri();
+			Naredba naredba = (Naredba) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(1));
+			naredba.provjeri();
+		}
 	}
 }

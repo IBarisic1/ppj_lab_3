@@ -11,7 +11,11 @@ public class SpecifikatorTipa implements CvorAtributnogStabla{
 	}
 	
 	public void provjeri() {
+		String desnaStranaProdukcije = trenutniCvor.desnaStranaProdukcije();
 		
+		if(desnaStranaProdukcije.equals("KR_VOID")) tip = "void";
+		else if(desnaStranaProdukcije.equals("KR_CHAR")) tip = "char";
+		else if(desnaStranaProdukcije.equals("KR_INT")) tip = "int";	
 	}
 
 	public String getTip() {

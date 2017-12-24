@@ -11,6 +11,12 @@ public class IzrazNaredba implements CvorAtributnogStabla{
 	}
 	
 	public void provjeri() {
-		
+		if (trenutniCvor.desnaStranaProdukcije().equals("TOCKAZAREZ")) {
+			tip = "int";
+		} else if (trenutniCvor.desnaStranaProdukcije().equals("<izraz> TOCKAZAREZ")) {
+			Izraz izraz = new Izraz(trenutniCvor.getDjeca().get(0));
+			izraz.provjeri();
+			tip = izraz.getTip();
+		}
 	}
 }

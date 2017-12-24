@@ -84,7 +84,7 @@ public class PrimarniIzraz extends Izraz implements CvorAtributnogStabla{
 		}
 		
 		else if(desnaStranaProdukcije.equals("L_ZAGRADA <izraz> D_ZAGRADA")) {
-			Izraz izraz = (Izraz) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(1));
+			Izraz izraz = new Izraz(trenutniCvor.getDjeca().get(1));
 			izraz.provjeri();
 			tip = izraz.getTip();
 			l_izraz = izraz.isL_izraz();

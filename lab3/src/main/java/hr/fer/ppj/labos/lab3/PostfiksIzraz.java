@@ -13,14 +13,14 @@ public class PostfiksIzraz extends Izraz implements CvorAtributnogStabla{
 		String desnaStranaProdukcije = trenutniCvor.desnaStranaProdukcije();
 		
 		if(desnaStranaProdukcije.equals("<primarni_izraz>")) {
-			PrimarniIzraz primarniIzraz = (PrimarniIzraz)
-					Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			PrimarniIzraz primarniIzraz = new PrimarniIzraz(trenutniCvor.
+					getDjeca().get(0));
 			primarniIzraz.provjeri();
 			tip = primarniIzraz.getTip();
 			l_izraz = primarniIzraz.isL_izraz();
 		}else if(desnaStranaProdukcije.equals("<postfiks_izraz> L_UGL_ZAGRADA <izraz> D_UGL_ZAGRADA")) {
-			PostfiksIzraz postfiksIzraz = (PostfiksIzraz) 
-					Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			PostfiksIzraz postfiksIzraz = new PostfiksIzraz
+					(trenutniCvor.getDjeca().get(0));
 			postfiksIzraz.provjeri();
 			
 			List<String> X = Arrays.asList(new String[] {
@@ -28,21 +28,20 @@ public class PostfiksIzraz extends Izraz implements CvorAtributnogStabla{
 			});
 			
 			if((!postfiksIzraz.getTip().startsWith("niz")) && !X.contains(postfiksIzraz.getTip().
-					substring(3, postfiksIzraz.getTip().length() - 1)))
+					substring(4, postfiksIzraz.getTip().length() - 1)))
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			
-			Izraz izraz = (Izraz) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(2));
+			Izraz izraz = new Izraz(trenutniCvor.getDjeca().get(2));
 			izraz.provjeri();
 			
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()).
 					contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			
 			tip = postfiksIzraz.getTip().
-					substring(3, postfiksIzraz.getTip().length() - 1);
+					substring(4, postfiksIzraz.getTip().length() - 1);
 			l_izraz = !tip.startsWith("const");
 		}else if(desnaStranaProdukcije.equals("<postfiks_izraz> L_ZAGRADA D_ZAGRADA")) {
-			PostfiksIzraz postfiksIzraz = (PostfiksIzraz) 
-					Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			PostfiksIzraz postfiksIzraz = new PostfiksIzraz(trenutniCvor.getDjeca().get(0));
 			postfiksIzraz.provjeri();
 			
 			List<String> pov = Arrays.asList(new String[] {
@@ -51,19 +50,19 @@ public class PostfiksIzraz extends Izraz implements CvorAtributnogStabla{
 			
 			if(!postfiksIzraz.getTip().startsWith("funkcija(void -> ") &&
 					!pov.contains(postfiksIzraz.getTip().
-							substring("funkcija(void -> ".length())))
+							substring("funkcija(void -> ".length(),
+									postfiksIzraz.getTip().length() - 1)))
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			tip = postfiksIzraz.getTip().
-					substring("funkcija(void -> ".length());
+					substring("funkcija(void -> ".length(), 
+							postfiksIzraz.getTip().length() - 1);
 			l_izraz = false;
 		}else if(desnaStranaProdukcije.equals("<postfiks_izraz> L_ZAGRADA <lista_argumenata> D_ZAGRADA")) {
 			
-			PostfiksIzraz postfiksIzraz = (PostfiksIzraz) 
-					Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			PostfiksIzraz postfiksIzraz = new PostfiksIzraz(trenutniCvor.getDjeca().get(0));
 			postfiksIzraz.provjeri();
 			
-			ListaArgumenata listaArgumenata = (ListaArgumenata) 
-					Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(2));
+			ListaArgumenata listaArgumenata = new ListaArgumenata(trenutniCvor.getDjeca().get(2));
 			listaArgumenata.provjeri();
 			
 			if(!postfiksIzraz.getTip().startsWith("funkcija"))
@@ -87,8 +86,8 @@ public class PostfiksIzraz extends Izraz implements CvorAtributnogStabla{
 		}else if(desnaStranaProdukcije.equals("<postfiks_izraz> OP_INC") ||
 				desnaStranaProdukcije.equals("<postfiks_izraz> OP_DEC")) {
 			
-			PostfiksIzraz postfiksIzraz = (PostfiksIzraz) 
-					Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			PostfiksIzraz postfiksIzraz = new PostfiksIzraz(trenutniCvor.getDjeca().get(0)); 
+					
 			postfiksIzraz.provjeri();
 			
 			if(postfiksIzraz.isL_izraz() && 

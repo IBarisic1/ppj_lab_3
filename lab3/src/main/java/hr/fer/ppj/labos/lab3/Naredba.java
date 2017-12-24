@@ -17,7 +17,7 @@ public class Naredba implements CvorAtributnogStabla {
 			IzrazNaredba izrazNaredba = (IzrazNaredba) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
 			izrazNaredba.provjeri();
 		} else if (trenutniCvor.desnaStranaProdukcije()
-				.equals("<naredba_grananja>, <naredba_petlje> i <naredba_skoka>")) {
+				.equals("<naredba_grananja>")) {
 			NaredbaGrananja naredbaGrananja = (NaredbaGrananja) Tvornica
 					.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
 			naredbaGrananja.provjeri();

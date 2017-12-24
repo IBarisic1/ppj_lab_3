@@ -9,20 +9,23 @@ public class SlozenaNaredba implements CvorAtributnogStabla {
 	}
 
 	public void provjeri() {
-		TablicaLokalnihImena novaTablicaLokImena = new TablicaLokalnihImena();
-		novaTablicaLokImena.setPrethodnaTablica(SemantickiAnalizator.tablicaLokalnihImena);
-		SemantickiAnalizator.tablicaLokalnihImena = novaTablicaLokImena;
 		if (trenutniCvor.desnaStranaProdukcije().equals("L_VIT_ZAGRADA <lista_naredbi> D_VIT_ZAGRADA")) {
-			ListaNaredbi listaNaredbi = (ListaNaredbi) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(1));
+			ListaNaredbi listaNaredbi = new ListaNaredbi(trenutniCvor.getDjeca().get(1));
 			listaNaredbi.provjeri();
 		} else if (trenutniCvor.desnaStranaProdukcije()
 				.equals("L_VIT_ZAGRADA <lista_deklaracija> <lista_naredbi> D_VIT_ZAGRADA")) {
-			ListaDeklaracija listaDeklaracija = (ListaDeklaracija) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(1));
+			TablicaLokalnihImena novaTablicaLokImena = new TablicaLokalnihImena();
+			novaTablicaLokImena.setPrethodnaTablica(SemantickiAnalizator.tablicaLokalnihImena);
+			SemantickiAnalizator.tablicaLokalnihImena = novaTablicaLokImena;
+
+			ListaDeklaracija listaDeklaracija = new ListaDeklaracija(trenutniCvor.getDjeca().get(1));
 			listaDeklaracija.provjeri();
-			ListaNaredbi listaNaredbi = (ListaNaredbi) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(2));
+			ListaNaredbi listaNaredbi = new ListaNaredbi(trenutniCvor.getDjeca().get(2));
 			listaNaredbi.provjeri();
+
+			// povratak na tablicu imena ugnježđujućeg bloka (vanjskog bloka)
+			SemantickiAnalizator.tablicaLokalnihImena = SemantickiAnalizator.tablicaLokalnihImena.getPrethodnaTablica();
 		}
-		//povratak na tablicu imena ugnježđujućeg bloka (vanjskog bloka)
-		SemantickiAnalizator.tablicaLokalnihImena = SemantickiAnalizator.tablicaLokalnihImena.getPrethodnaTablica();
+
 	}
 }

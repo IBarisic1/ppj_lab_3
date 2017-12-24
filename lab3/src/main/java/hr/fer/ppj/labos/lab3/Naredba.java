@@ -10,22 +10,20 @@ public class Naredba implements CvorAtributnogStabla {
 
 	public void provjeri() {
 		if (trenutniCvor.desnaStranaProdukcije().equals("<slozena_naredba>")) {
-			SlozenaNaredba slozenaNaredba = (SlozenaNaredba) Tvornica
-					.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			SlozenaNaredba slozenaNaredba = new SlozenaNaredba(trenutniCvor.getDjeca().get(0));
 			slozenaNaredba.provjeri();
 		} else if (trenutniCvor.desnaStranaProdukcije().equals("<izraz_naredba>")) {
-			IzrazNaredba izrazNaredba = (IzrazNaredba) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			IzrazNaredba izrazNaredba = new IzrazNaredba(trenutniCvor.getDjeca().get(0));
 			izrazNaredba.provjeri();
 		} else if (trenutniCvor.desnaStranaProdukcije()
 				.equals("<naredba_grananja>")) {
-			NaredbaGrananja naredbaGrananja = (NaredbaGrananja) Tvornica
-					.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			NaredbaGrananja naredbaGrananja = new NaredbaGrananja(trenutniCvor.getDjeca().get(0));
 			naredbaGrananja.provjeri();
 		} else if (trenutniCvor.desnaStranaProdukcije().equals("<naredba_petlje>")) {
-			NaredbaPetlje naredbaPetlje = (NaredbaPetlje) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			NaredbaPetlje naredbaPetlje = new NaredbaPetlje(trenutniCvor.getDjeca().get(0));
 			naredbaPetlje.provjeri();
 		} else if (trenutniCvor.desnaStranaProdukcije().equals("<naredba_skoka>")) {
-			NaredbaSkoka naredbaSkoka = (NaredbaSkoka) Tvornica.napraviAtributniCvor(trenutniCvor.getDjeca().get(0));
+			NaredbaSkoka naredbaSkoka = new NaredbaSkoka(trenutniCvor.getDjeca().get(0));
 			naredbaSkoka.provjeri();
 		}
 	}

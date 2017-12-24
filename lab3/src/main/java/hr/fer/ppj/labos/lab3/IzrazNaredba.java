@@ -16,6 +16,7 @@ public class IzrazNaredba implements CvorAtributnogStabla{
 		} else if (trenutniCvor.desnaStranaProdukcije().equals("<izraz> TOCKAZAREZ")) {
 			Izraz izraz = new Izraz(trenutniCvor.getDjeca().get(0));
 			izraz.provjeri();
+			
 			tip = izraz.getTip();
 		}
 	}

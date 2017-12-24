@@ -15,6 +15,7 @@ public class ListaNaredbi implements CvorAtributnogStabla {
 		} else if (trenutniCvor.desnaStranaProdukcije().equals("<lista_naredbi> <naredba>")) {
 			ListaNaredbi listaNaredbi = new ListaNaredbi(trenutniCvor.getDjeca().get(0));
 			listaNaredbi.provjeri();
+			
 			Naredba naredba = new Naredba(trenutniCvor.getDjeca().get(1));
 			naredba.provjeri();
 		}

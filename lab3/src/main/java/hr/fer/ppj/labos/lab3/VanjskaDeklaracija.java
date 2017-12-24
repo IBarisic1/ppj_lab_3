@@ -9,6 +9,12 @@ public class VanjskaDeklaracija implements CvorAtributnogStabla{
 	}
 	
 	public void provjeri() {
-		
+		if (trenutniCvor.desnaStranaProdukcije().equals("<definicija_funkcije>")) {
+			DefinicijaFunkcije definicijaFunkcije = new DefinicijaFunkcije(trenutniCvor.getDjeca().get(0));
+			definicijaFunkcije.provjeri();
+		} else if (trenutniCvor.desnaStranaProdukcije().equals("<deklaracija>")) {
+			Deklaracija deklaracija = new Deklaracija(trenutniCvor.getDjeca().get(0));
+			deklaracija.provjeri();
+		}
 	}
 }

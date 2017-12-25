@@ -11,8 +11,29 @@ public class DeklaracijaParametra implements CvorAtributnogStabla{
 		this.trenutniCvor = trenutniCvor;
 	}
 
+	//TODO provjeri bi li trebalo ovaj parametar dodati u tablicu lokalnih imena ili nešto slično
 	public void provjeri() {
-		
+		if (trenutniCvor.desnaStranaProdukcije().equals("<ime_tipa> IDN")) {
+			ImeTipa imeTipa = new ImeTipa(trenutniCvor.getDjeca().get(0));
+			imeTipa.provjeri();
+			
+			if (imeTipa.getTip().equals("void")) {
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
+			}
+			
+			tip = imeTipa.getTip();
+			ime = trenutniCvor.getDjeca().get(0).getLeksickaJedinka();
+		} else if (trenutniCvor.desnaStranaProdukcije().equals("<ime_tipa> IDN L_UGL_ZAGRADA D_UGL_ZAGRADA")) {
+			ImeTipa imeTipa = new ImeTipa(trenutniCvor.getDjeca().get(0));
+			imeTipa.provjeri();
+			
+			if (imeTipa.getTip().equals("void")) {
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
+			}
+			
+			tip = "niz(" + imeTipa.getTip() + ")";
+			ime = trenutniCvor.getDjeca().get(0).getLeksickaJedinka();
+		}
 	}
 
 	public String getTip() {

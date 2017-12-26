@@ -39,6 +39,8 @@ public class InitDeklarator implements CvorAtributnogStabla {
 			Inicijalizator inicijalizator = new Inicijalizator(trenutniCvor.getDjeca().get(2));
 			inicijalizator.provjeri();
 
+			
+			// tu bi moglo dolaziti do nekakve greske, ako bude provjeri dno 71. i vrh 72. strane
 			List<String> T = Arrays.asList(new String[] { "char", "int" });
 			if (T.contains(izravniDeklarator.getTip()) || ((izravniDeklarator.getTip().startsWith("niz(const("))
 					&& (T.contains(izravniDeklarator.getTip().substring(10, izravniDeklarator.getTip().length() - 1))
@@ -60,10 +62,10 @@ public class InitDeklarator implements CvorAtributnogStabla {
 					SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 				}
 				
-				for (String tip : inicijalizator.getTipovi()) {
+				for (String inicijalizatorTip : inicijalizator.getTipovi()) {
 					// provjeri je li donja provjera dobra
-					if (!(SemantickiAnalizator.implicitnaPretvorba.get(tip).contains("int")
-							|| SemantickiAnalizator.implicitnaPretvorba.get(tip).contains("char"))) {
+					if (!(SemantickiAnalizator.implicitnaPretvorba.get(inicijalizatorTip).contains("int")
+							|| SemantickiAnalizator.implicitnaPretvorba.get(inicijalizatorTip).contains("char"))) {
 						SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 					}
 				}

@@ -29,7 +29,7 @@ public class ListaParametara implements CvorAtributnogStabla {
 			listaParametara.provjeri();
 			DeklaracijaParametra deklaracijaParametra = new DeklaracijaParametra(trenutniCvor.getDjeca().get(2));
 			deklaracijaParametra.provjeri();
-			//TODO je li potrebno svaki put stvarati novu listu??? mislim da bi i samo dopuna bila dovoljna
+			
 			tipovi = new LinkedList<>(listaParametara.getTipovi());
 			tipovi.add(deklaracijaParametra.getTip());
 			imena = new LinkedList<>(listaParametara.getImena());

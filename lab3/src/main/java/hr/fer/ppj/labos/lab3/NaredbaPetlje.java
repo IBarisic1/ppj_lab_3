@@ -9,6 +9,9 @@ public class NaredbaPetlje implements CvorAtributnogStabla {
 	}
 
 	public void provjeri() {
+		// za BREAK i CONTINUE u NaredbaSkoka bitno je znati jesmo li u petlji
+		// ili ne
+		SemantickiAnalizator.brojTrenutnihPetlji++;
 		if (trenutniCvor.desnaStranaProdukcije().equals("KR_WHILE L_ZAGRADA <izraz> D_ZAGRADA <naredba>")) {
 			Izraz izraz = new Izraz(trenutniCvor.getDjeca().get(2));
 			izraz.provjeri();
@@ -44,12 +47,13 @@ public class NaredbaPetlje implements CvorAtributnogStabla {
 			if (!SemantickiAnalizator.implicitnaPretvorba.get(izrazNaredba2.getTip()).contains("int")) {
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			}
-			
+
 			Izraz izraz = new Izraz(trenutniCvor.getDjeca().get(4));
 			izraz.provjeri();
-			
+
 			Naredba naredba = new Naredba(trenutniCvor.getDjeca().get(6));
 			naredba.provjeri();
 		}
+		SemantickiAnalizator.brojTrenutnihPetlji--;
 	}
 }

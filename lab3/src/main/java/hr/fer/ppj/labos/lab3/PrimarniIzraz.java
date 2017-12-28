@@ -16,7 +16,7 @@ public class PrimarniIzraz extends Izraz implements CvorAtributnogStabla{
 		if(desnaStranaProdukcije.equals("IDN")) {
 			String imeIdentifikatora = trenutniCvor.getDjeca().get(0).
 					getLeksickaJedinka();
-			//TODO ispravio pretraživanje tablice lokalnih imena
+			//TODO ispravio pretrazivanje tablice lokalnih imena
 			if(SemantickiAnalizator.tablicaLokalnihImena.
 					jeDeklarirano(imeIdentifikatora)) {
 				TablicaLokalnihImena trenutnaTablica = 

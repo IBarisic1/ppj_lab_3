@@ -89,7 +89,7 @@ public class DefinicijaFunkcije implements CvorAtributnogStabla {
 				}
 			}
 			SemantickiAnalizator.definiraneFunkcije.put(imeFje, tipFje);
-			//TODO dodao provjeravanje složene naredbe
+			//TODO dodao provjeravanje slozene naredbe
 			SemantickiAnalizator.tipUgnjezdujuceFunkcije = tipFje;
 			SlozenaNaredba slozenaNaredba = new SlozenaNaredba(trenutniCvor.getDjeca().get(5));
 			TablicaLokalnihImena tablica = slozenaNaredba.getTablicaLokalnihImena();

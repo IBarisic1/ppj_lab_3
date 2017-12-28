@@ -13,7 +13,7 @@ public class SemantickiAnalizator {
 
 	/**
 	 * String je tip koji implicitno pretvaramo, a Set<String> je popis tipova u
-	 * koje se može implicitno pretvoriti.
+	 * koje se moze implicitno pretvoriti.
 	 */
 	static Map<String, Set<String>> implicitnaPretvorba = new HashMap<>();
 	// TODO napuniti tablicu s implicitnom pretvorbom

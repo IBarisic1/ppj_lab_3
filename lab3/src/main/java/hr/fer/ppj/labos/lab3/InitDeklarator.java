@@ -46,7 +46,7 @@ public class InitDeklarator implements CvorAtributnogStabla {
 					&& (T.contains(izravniDeklarator.getTip().substring(6, izravniDeklarator.getTip().length() - 1))
 							&& (izravniDeklarator.getTip().endsWith(")"))))) {
 				// provjeri je li donja provjera dobra
-				//TODO popravio sam da ispituje može li se pretvoriti u tip
+				//TODO popravio sam da ispituje moze li se pretvoriti u tip
 				//izravnog deklaratora a ne bilo koji
 				if(SemantickiAnalizator.implicitnaPretvorba.get(inicijalizator.getTip()) == null)
 					SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);

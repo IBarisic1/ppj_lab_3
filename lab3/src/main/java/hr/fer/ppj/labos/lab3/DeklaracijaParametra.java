@@ -11,7 +11,7 @@ public class DeklaracijaParametra implements CvorAtributnogStabla{
 		this.trenutniCvor = trenutniCvor;
 	}
 
-	//TODO provjeri bi li trebalo ovaj parametar dodati u tablicu lokalnih imena ili nešto slično
+	//TODO provjeri bi li trebalo ovaj parametar dodati u tablicu lokalnih imena ili nesto slicno
 	public void provjeri() {
 		if (trenutniCvor.desnaStranaProdukcije().equals("<ime_tipa> IDN")) {
 			ImeTipa imeTipa = new ImeTipa(trenutniCvor.getDjeca().get(0));

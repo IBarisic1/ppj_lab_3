@@ -22,7 +22,7 @@ public class DeklaracijaParametra implements CvorAtributnogStabla{
 			}
 			
 			tip = imeTipa.getTip();
-			ime = trenutniCvor.getDjeca().get(0).getLeksickaJedinka();
+			ime = trenutniCvor.getDjeca().get(1).getLeksickaJedinka();
 		} else if (trenutniCvor.desnaStranaProdukcije().equals("<ime_tipa> IDN L_UGL_ZAGRADA D_UGL_ZAGRADA")) {
 			ImeTipa imeTipa = new ImeTipa(trenutniCvor.getDjeca().get(0));
 			imeTipa.provjeri();
@@ -32,7 +32,7 @@ public class DeklaracijaParametra implements CvorAtributnogStabla{
 			}
 			
 			tip = "niz(" + imeTipa.getTip() + ")";
-			ime = trenutniCvor.getDjeca().get(0).getLeksickaJedinka();
+			ime = trenutniCvor.getDjeca().get(1).getLeksickaJedinka();
 		}
 	}
 

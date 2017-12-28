@@ -37,15 +37,70 @@ public class DefinicijaFunkcije implements CvorAtributnogStabla {
 				}
 			} else {
 				SemantickiAnalizator.tablicaLokalnihImena.dodajImeUTablicu(imeFje, tipFje);
-				SemantickiAnalizator.deklariraneFunkcije.put(imeFje, tipFje);
+				if (!SemantickiAnalizator.deklariraneFunkcije.containsKey(imeFje)) {
+					SemantickiAnalizator.deklariraneFunkcije.put(imeFje, tipFje);
+				}
+			}
+			SemantickiAnalizator.definiraneFunkcije.put(imeFje, tipFje);
+
+			SemantickiAnalizator.tipUgnjezdujuceFunkcije = tipFje;
+			SlozenaNaredba slozenaNaredba = new SlozenaNaredba(trenutniCvor.getDjeca().get(5));
+			slozenaNaredba.provjeri();
+		} else if (trenutniCvor.desnaStranaProdukcije()
+				.equals("<ime_tipa> IDN L_ZAGRADA <lista_parametara> D_ZAGRADA <slozena_naredba>")) {
+			ImeTipa imeTipa = new ImeTipa(trenutniCvor.getDjeca().get(0));
+			imeTipa.provjeri();
+
+			List T = Arrays.asList(new String[] { "int", "char" });
+			if (imeTipa.getTip().startsWith("const(") && imeTipa.getTip().endsWith(")")
+					&& T.contains(imeTipa.getTip().substring(6, imeTipa.getTip().length() - 1))) {
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
+			}
+
+			String imeFje = trenutniCvor.getDjeca().get(1).getLeksickaJedinka();
+			if (SemantickiAnalizator.definiraneFunkcije.containsKey(imeFje)) {
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
+			}
+
+			ListaParametara listaParametara = new ListaParametara(trenutniCvor.getDjeca().get(3));
+			listaParametara.provjeri();
+
+			String tipFje = "funkcija(";
+			boolean prviParametar = true;
+			for (String tipParametra : listaParametara.getTipovi()) {
+				if (prviParametar) {
+					tipFje += tipParametra;
+					prviParametar = false;
+				} else {
+					tipFje += (", " + tipParametra);
+				}
+			}
+			tipFje += (" -> " + imeTipa.getTip() + ")");
+			// pretpostavka je da se ovdje tablicaLokalnihImena odnosi na
+			// globalni djelokrug
+			if (SemantickiAnalizator.tablicaLokalnihImena.sadrziIme(imeFje)) {
+				if (!SemantickiAnalizator.tablicaLokalnihImena.dohvatiTipZaIme(imeFje).equals(tipFje)) {
+					SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
+				}
+			} else {
+				SemantickiAnalizator.tablicaLokalnihImena.dodajImeUTablicu(imeFje, tipFje);
+				if (!SemantickiAnalizator.deklariraneFunkcije.containsKey(imeFje)) {
+					SemantickiAnalizator.deklariraneFunkcije.put(imeFje, tipFje);
+				}
 			}
 			SemantickiAnalizator.definiraneFunkcije.put(imeFje, tipFje);
 
 			SlozenaNaredba slozenaNaredba = new SlozenaNaredba(trenutniCvor.getDjeca().get(5));
-			slozenaNaredba.provjeri();
-		} else if (trenutniCvor.desnaStranaProdukcije().equals("<izraz_naredba>")) {
-			IzrazNaredba izrazNaredba = new IzrazNaredba(trenutniCvor.getDjeca().get(0));
-			izrazNaredba.provjeri();
+			TablicaLokalnihImena tablica = slozenaNaredba.getTablicaLokalnihImena();
+			List<String> tipovi = listaParametara.getTipovi();
+			List<String> imena = listaParametara.getImena();
+			for (int i = 0, n = listaParametara.getTipovi().size(); i < n; i++) {
+				tablica.dodajImeUTablicu(imena.get(i), tipovi.get(i));
+			}
 		}
+
+		// oznaka da smo zavrsili s definicijom fje te se ponovo nalazimo u
+		// globalnom djelokrugu
+		SemantickiAnalizator.tipUgnjezdujuceFunkcije = null;
 	}
 }

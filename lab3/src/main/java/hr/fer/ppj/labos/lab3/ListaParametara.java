@@ -22,16 +22,23 @@ public class ListaParametara implements CvorAtributnogStabla {
 		if (trenutniCvor.desnaStranaProdukcije().equals("<deklaracija_parametra>")) {
 			DeklaracijaParametra deklaracijaParametra = new DeklaracijaParametra(trenutniCvor.getDjeca().get(0));
 			deklaracijaParametra.provjeri();
+
 			tipovi.add(deklaracijaParametra.getTip());
 			imena.add(deklaracijaParametra.getIme());
 		} else if (trenutniCvor.desnaStranaProdukcije().equals("<lista_parametara> ZAREZ <deklaracija_parametra>")) {
 			ListaParametara listaParametara = new ListaParametara(trenutniCvor.getDjeca().get(0));
 			listaParametara.provjeri();
+
 			DeklaracijaParametra deklaracijaParametra = new DeklaracijaParametra(trenutniCvor.getDjeca().get(2));
 			deklaracijaParametra.provjeri();
-			
+
+			if (listaParametara.imena.contains(deklaracijaParametra.getIme())) {
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
+			}
+
 			tipovi = new LinkedList<>(listaParametara.getTipovi());
 			tipovi.add(deklaracijaParametra.getTip());
+
 			imena = new LinkedList<>(listaParametara.getImena());
 			imena.add(deklaracijaParametra.getIme());
 		}

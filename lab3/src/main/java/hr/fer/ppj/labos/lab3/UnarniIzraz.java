@@ -19,6 +19,8 @@ public class UnarniIzraz extends Izraz implements CvorAtributnogStabla{
 				|| desnaStranaProdukcije.equals("OP_INC <unarni_izraz>")) {
 			UnarniIzraz unarniIzraz = new UnarniIzraz(trenutniCvor.getDjeca().get(1));
 			unarniIzraz.provjeri();
+			if(SemantickiAnalizator.implicitnaPretvorba.get(unarniIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!unarniIzraz.isL_izraz() || !SemantickiAnalizator.implicitnaPretvorba.
 					get(unarniIzraz.getTip()).contains("int"))
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
@@ -27,6 +29,8 @@ public class UnarniIzraz extends Izraz implements CvorAtributnogStabla{
 		}else if(desnaStranaProdukcije.equals("<unarni_operator> <cast_izraz>")){
 			CastIzraz castIzraz = new CastIzraz(trenutniCvor.getDjeca().get(1));
 			castIzraz.provjeri();
+			if(SemantickiAnalizator.implicitnaPretvorba.get(castIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(castIzraz.getTip()).
 					contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			tip = "int";

@@ -12,7 +12,10 @@ public class NaredbaGrananja implements CvorAtributnogStabla {
 		if (trenutniCvor.desnaStranaProdukcije().equals("KR_IF L_ZAGRADA <izraz> D_ZAGRADA <naredba>")) {
 			Izraz izraz = new Izraz(trenutniCvor.getDjeca().get(2));
 			izraz.provjeri();
+			
 
+			if(SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if (!SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()).contains("int")) {
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			}
@@ -24,6 +27,8 @@ public class NaredbaGrananja implements CvorAtributnogStabla {
 			Izraz izraz = new Izraz(trenutniCvor.getDjeca().get(2));
 			izraz.provjeri();
 
+			if(SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if (!SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()).contains("int")) {
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			}

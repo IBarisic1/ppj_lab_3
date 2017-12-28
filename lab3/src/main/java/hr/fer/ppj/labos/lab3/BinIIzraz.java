@@ -18,11 +18,17 @@ public class BinIIzraz extends Izraz implements CvorAtributnogStabla{
 		}else if(desnaStranaProdukcije.equals("<bin_i_izraz> OP_BIN_I <jednakosni_izraz>")) {
 			BinIIzraz binIIzraz = new BinIIzraz(trenutniCvor.getDjeca().get(0));
 			binIIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(binIIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(binIIzraz.getTip())
 					.contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			JednakosniIzraz jednakosniIzraz = 
 					new JednakosniIzraz(trenutniCvor.getDjeca().get(2));
 			jednakosniIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(jednakosniIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(jednakosniIzraz.getTip())
 					.contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			tip = "int";

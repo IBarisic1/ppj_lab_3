@@ -17,10 +17,16 @@ public class BinIliIzraz extends Izraz implements CvorAtributnogStabla{
 		} else if (desnaStranaProdukcije.equals("<bin_ili_izraz> OP_BIN_ILI <bin_xili_izraz>")) {
 			BinIliIzraz binIliIzraz = new BinIliIzraz(trenutniCvor.getDjeca().get(0));
 			binIliIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(binIliIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if (!SemantickiAnalizator.implicitnaPretvorba.get(binIliIzraz.getTip()).contains("int"))
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			BinXiliIzraz binXiliIzraz = new BinXiliIzraz(trenutniCvor.getDjeca().get(2));
 			binXiliIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(binXiliIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if (!SemantickiAnalizator.implicitnaPretvorba.get(binXiliIzraz.getTip()).contains("int"))
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			tip = "int";

@@ -16,11 +16,18 @@ public class PrimarniIzraz extends Izraz implements CvorAtributnogStabla{
 		if(desnaStranaProdukcije.equals("IDN")) {
 			String imeIdentifikatora = trenutniCvor.getDjeca().get(0).
 					getLeksickaJedinka();
-			
+			//TODO ispravio pretraživanje tablice lokalnih imena
 			if(SemantickiAnalizator.tablicaLokalnihImena.
 					jeDeklarirano(imeIdentifikatora)) {
-				tip = SemantickiAnalizator.tablicaLokalnihImena.
-						dohvatiTipZaIme(imeIdentifikatora);
+				TablicaLokalnihImena trenutnaTablica = 
+						SemantickiAnalizator.tablicaLokalnihImena;
+				while(trenutnaTablica != null) {
+					if(trenutnaTablica.sadrziIme(imeIdentifikatora)) {
+						tip = trenutnaTablica.dohvatiTipZaIme(imeIdentifikatora);
+						break;
+					}
+					trenutnaTablica = trenutnaTablica.getPrethodnaTablica();
+				}
 				l_izraz = SemantickiAnalizator.jeLIzraz(tip);
 			}
 			
@@ -28,7 +35,7 @@ public class PrimarniIzraz extends Izraz implements CvorAtributnogStabla{
 		}
 		
 		else if(desnaStranaProdukcije.equals("BROJ")) {
-			long vrijednostBroja = Long.parseLong(trenutniCvor.getDjeca().get(0).
+			double vrijednostBroja = Double.parseDouble(trenutniCvor.getDjeca().get(0).
 					getLeksickaJedinka());
 			
 			if(vrijednostBroja >= Integer.MIN_VALUE && 

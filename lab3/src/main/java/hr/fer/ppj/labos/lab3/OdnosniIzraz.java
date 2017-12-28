@@ -20,10 +20,16 @@ public class OdnosniIzraz extends Izraz implements CvorAtributnogStabla{
 				|| desnaStranaProdukcije.equals("<odnosni_izraz> OP_GTE <aditivni_izraz>")) {
 			OdnosniIzraz odnosniIzraz = new OdnosniIzraz(trenutniCvor.getDjeca().get(0));
 			odnosniIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(odnosniIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(odnosniIzraz.getTip())
 					.contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			AditivniIzraz aditivniIzraz = new AditivniIzraz(trenutniCvor.getDjeca().get(2));
 			aditivniIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(aditivniIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(aditivniIzraz.getTip())
 					.contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			tip = "int";

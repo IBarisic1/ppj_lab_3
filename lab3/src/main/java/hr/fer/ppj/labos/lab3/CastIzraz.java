@@ -19,9 +19,18 @@ public class CastIzraz extends Izraz implements CvorAtributnogStabla{
 			imeTipa.provjeri();
 			CastIzraz castIzraz = new CastIzraz(trenutniCvor.getDjeca().get(3));
 			castIzraz.provjeri();
+			//TODO ispravio ispitivanje eksplicitnog pretvaranja
+			if(castIzraz.getTip().startsWith("funkcija") || 
+					castIzraz.getTip().startsWith("niz(const")) 
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(castIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(castIzraz.getTip()).
-					contains(imeTipa.getTip()) && !(castIzraz.getTip() == "int" &&
-					imeTipa.getTip() == "char")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
+					contains(imeTipa.getTip()) && !((castIzraz.getTip().equals("int") ||
+							castIzraz.getTip().equals("const(int)")) &&
+					(imeTipa.getTip().equals("char") || imeTipa.getTip().equals("const(char)")))) 
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			tip = imeTipa.getTip();
 			l_izraz = false;
 		}

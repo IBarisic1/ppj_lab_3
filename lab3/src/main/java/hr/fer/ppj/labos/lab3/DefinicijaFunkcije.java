@@ -89,7 +89,8 @@ public class DefinicijaFunkcije implements CvorAtributnogStabla {
 				}
 			}
 			SemantickiAnalizator.definiraneFunkcije.put(imeFje, tipFje);
-
+			//TODO dodao provjeravanje složene naredbe
+			SemantickiAnalizator.tipUgnjezdujuceFunkcije = tipFje;
 			SlozenaNaredba slozenaNaredba = new SlozenaNaredba(trenutniCvor.getDjeca().get(5));
 			TablicaLokalnihImena tablica = slozenaNaredba.getTablicaLokalnihImena();
 			List<String> tipovi = listaParametara.getTipovi();
@@ -97,6 +98,7 @@ public class DefinicijaFunkcije implements CvorAtributnogStabla {
 			for (int i = 0, n = listaParametara.getTipovi().size(); i < n; i++) {
 				tablica.dodajImeUTablicu(imena.get(i), tipovi.get(i));
 			}
+			slozenaNaredba.provjeri();
 		}
 
 		// oznaka da smo zavrsili s definicijom fje te se ponovo nalazimo u

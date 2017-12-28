@@ -12,7 +12,7 @@ public class IzravniDeklarator implements CvorAtributnogStabla {
 	}
 
 	public void provjeri() {
-		if (trenutniCvor.desnaStranaProdukcije().equals("IDN")) {
+		if (trenutniCvor.desnaStranaProdukcije().equals("IDN")) {;
 			if (ntip.equals("void")) {
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			}
@@ -23,7 +23,6 @@ public class IzravniDeklarator implements CvorAtributnogStabla {
 			}
 
 			tip = ntip;
-
 			SemantickiAnalizator.tablicaLokalnihImena.dodajImeUTablicu(ime, tip);
 		} else if (trenutniCvor.desnaStranaProdukcije().equals("IDN L_UGL_ZAGRADA BROJ D_UGL_ZAGRADA")) {
 			if (ntip.equals("void")) {
@@ -44,6 +43,7 @@ public class IzravniDeklarator implements CvorAtributnogStabla {
 			this.brElem = brojElemenata;
 
 			SemantickiAnalizator.tablicaLokalnihImena.dodajImeUTablicu(ime, tip);
+			//TODO ispravio sam tako da dodaje u listu deklariranih fja
 		} else if (trenutniCvor.desnaStranaProdukcije().equals("IDN L_ZAGRADA KR_VOID D_ZAGRADA")) {
 			String ime = trenutniCvor.getDjeca().get(0).getLeksickaJedinka();
 			tip = "funkcija(void -> " + ntip + ")";
@@ -61,6 +61,7 @@ public class IzravniDeklarator implements CvorAtributnogStabla {
 
 			// ako je zapis vec bio u tablici nista se nece promijeniti
 			SemantickiAnalizator.tablicaLokalnihImena.dodajImeUTablicu(ime, tip);
+			SemantickiAnalizator.deklariraneFunkcije.put(ime, tip);
 		} else if (trenutniCvor.desnaStranaProdukcije().equals("IDN L_ZAGRADA <lista_parametara> D_ZAGRADA")) {
 			ListaParametara listaParametara = new ListaParametara(trenutniCvor.getDjeca().get(2));
 			listaParametara.provjeri();
@@ -76,21 +77,19 @@ public class IzravniDeklarator implements CvorAtributnogStabla {
 				}
 			}
 			tip += (" -> " + ntip + ")");
-
+			
+			//TODO vratio provjeru samo u lokalni djelokrug
 			String ime = trenutniCvor.getDjeca().get(0).getLeksickaJedinka();
 			TablicaLokalnihImena trenutnaTablica = SemantickiAnalizator.tablicaLokalnihImena;
-			while (trenutnaTablica != null) {
-				if (trenutnaTablica.sadrziIme(ime)) {
-					if (!trenutnaTablica.dohvatiTipZaIme(ime).equals(tip)) {
-						SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
-					}
-					break;
+			if (trenutnaTablica.sadrziIme(ime)) {
+				if (!trenutnaTablica.dohvatiTipZaIme(ime).equals(tip)) {
+					SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 				}
-				trenutnaTablica = trenutnaTablica.getPrethodnaTablica();
 			}
 
 			// ako je zapis vec bio u tablici nista se nece promijeniti
 			SemantickiAnalizator.tablicaLokalnihImena.dodajImeUTablicu(ime, tip);
+			SemantickiAnalizator.deklariraneFunkcije.put(ime, tip);
 		}
 
 	}

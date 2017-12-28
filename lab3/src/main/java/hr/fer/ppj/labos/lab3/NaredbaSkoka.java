@@ -27,6 +27,9 @@ public class NaredbaSkoka implements CvorAtributnogStabla {
 
 			String TUF = SemantickiAnalizator.tipUgnjezdujuceFunkcije;
 			String povratnaVrijednostFunkcije = TUF.substring(TUF.indexOf(" -> ") + 4, TUF.length() - 1);
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if (!TUF.startsWith("funkcija(") || !TUF.endsWith(")") || !SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()).contains(povratnaVrijednostFunkcije)) {
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			}

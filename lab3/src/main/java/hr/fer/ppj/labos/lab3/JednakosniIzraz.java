@@ -19,11 +19,16 @@ public class JednakosniIzraz extends Izraz implements CvorAtributnogStabla{
 				|| desnaStranaProdukcije.equals("<jednakosni_izraz> OP_NEQ <odnosni_izraz>")) {
 			JednakosniIzraz jednakosniIzraz = new JednakosniIzraz(trenutniCvor.getDjeca().get(0));
 			jednakosniIzraz.provjeri();
+			if(SemantickiAnalizator.implicitnaPretvorba.get(jednakosniIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(jednakosniIzraz.getTip())
 					.contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			OdnosniIzraz odnosniIzraz = 
 					new OdnosniIzraz(trenutniCvor.getDjeca().get(2));
 			odnosniIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(odnosniIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(odnosniIzraz.getTip())
 					.contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			tip = "int";

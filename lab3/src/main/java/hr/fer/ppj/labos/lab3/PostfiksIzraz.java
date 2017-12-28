@@ -27,13 +27,20 @@ public class PostfiksIzraz extends Izraz implements CvorAtributnogStabla{
 					"char", "int", "const(char)", "const(int)"
 			});
 			
-			if((!postfiksIzraz.getTip().startsWith("niz")) && !X.contains(postfiksIzraz.getTip().
+			//TODO popravio ispitivanje je li postfiks izraz tipa niz
+			if((!postfiksIzraz.getTip().startsWith("niz")))
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
+			
+			if(!X.contains(postfiksIzraz.getTip().
 					substring(4, postfiksIzraz.getTip().length() - 1)))
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			
 			Izraz izraz = new Izraz(trenutniCvor.getDjeca().get(2));
 			izraz.provjeri();
 			
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()).
 					contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			
@@ -75,13 +82,17 @@ public class PostfiksIzraz extends Izraz implements CvorAtributnogStabla{
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			
 			for(int i = 0; i < paramTip.length; i++) {
+
+				if(SemantickiAnalizator.implicitnaPretvorba.get(listaArgumenata.getTipovi().get(i)) == null)
+					SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 				if(!SemantickiAnalizator.implicitnaPretvorba.
 						get(listaArgumenata.getTipovi().get(i)).
 						contains(paramTip[i].trim())) 
 					SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			}
-			
-			tip = postfiksIzraz.getTip().substring(postfiksIzraz.getTip().indexOf("-> ") + 4);
+			//TODO popravio krivo sjeckanje stringa
+			tip = postfiksIzraz.getTip().substring(postfiksIzraz.getTip().indexOf("-> ") + 3,
+					postfiksIzraz.getTip().length()-1);
 			l_izraz = false;
 		}else if(desnaStranaProdukcije.equals("<postfiks_izraz> OP_INC") ||
 				desnaStranaProdukcije.equals("<postfiks_izraz> OP_DEC")) {
@@ -89,6 +100,8 @@ public class PostfiksIzraz extends Izraz implements CvorAtributnogStabla{
 			PostfiksIzraz postfiksIzraz = new PostfiksIzraz(trenutniCvor.getDjeca().get(0)); 
 					
 			postfiksIzraz.provjeri();
+			if(SemantickiAnalizator.implicitnaPretvorba.get(postfiksIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			
 			if(postfiksIzraz.isL_izraz() && 
 					SemantickiAnalizator.implicitnaPretvorba.get(postfiksIzraz.getTip()).contains("int")) {

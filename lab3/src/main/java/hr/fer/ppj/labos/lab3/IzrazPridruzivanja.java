@@ -20,6 +20,9 @@ public class IzrazPridruzivanja extends Izraz implements CvorAtributnogStabla{
 			if(!postfiksIzraz.isL_izraz()) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			IzrazPridruzivanja izrazPridruzivanja = new IzrazPridruzivanja(trenutniCvor.getDjeca().get(2));
 			izrazPridruzivanja.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(izrazPridruzivanja.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(izrazPridruzivanja.getTip()).
 					contains(postfiksIzraz.getTip())) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			tip = postfiksIzraz.getTip();

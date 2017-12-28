@@ -37,9 +37,10 @@ public class Inicijalizator implements CvorAtributnogStabla {
 					provjeravaniCvor = provjeravaniCvor.getDjeca().get(0);
 				}
 			}
-
+			
+			//TODO smanjio za 1 br elemenata jer length nije kao indeksi.
 			if (jeLiNizZnakova) {
-				brElem = provjeravaniCvor.getLeksickaJedinka().length() + 1;
+				brElem = provjeravaniCvor.getLeksickaJedinka().length();
 				for (int i = 0; i < brElem; i++) {
 					tipovi.add("char");
 				}

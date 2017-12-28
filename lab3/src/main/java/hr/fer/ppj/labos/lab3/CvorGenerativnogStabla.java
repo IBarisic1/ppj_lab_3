@@ -76,8 +76,7 @@ public class CvorGenerativnogStabla {
 		return sb.toString().trim();
 	}
 
-	@Override
-	public String toString() {
+	private String ispisiZaGresku() {
 		if (ispisatiSamoUniformniZnak)
 			return uniformniZnak;
 		else {
@@ -88,6 +87,30 @@ public class CvorGenerativnogStabla {
 			sb.append(",");
 			sb.append(leksickaJedinka);
 			sb.append(")");
+			return sb.toString();
+		}
+	}
+	
+	public String ispisiDesnuStranuZaGresku() {
+		StringBuilder sb = new StringBuilder();
+		for (CvorGenerativnogStabla cvorGenerativnogStabla : djeca) {
+			sb.append(cvorGenerativnogStabla.ispisiZaGresku() + " ");
+		}
+		return sb.toString().trim();
+	}
+	
+	@Override
+	public String toString() {
+		if (ispisatiSamoUniformniZnak)
+			return uniformniZnak;
+		else {
+			StringBuilder sb = new StringBuilder();
+			sb.append(uniformniZnak);
+//			sb.append("(");
+//			sb.append(brojRetka);
+//			sb.append(",");
+//			sb.append(leksickaJedinka);
+//			sb.append(")");
 			return sb.toString();
 		}
 	}

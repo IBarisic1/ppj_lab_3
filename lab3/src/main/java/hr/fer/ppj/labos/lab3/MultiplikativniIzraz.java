@@ -19,10 +19,16 @@ public class MultiplikativniIzraz extends Izraz implements CvorAtributnogStabla{
 				|| desnaStranaProdukcije.equals("<multiplikativni_izraz> OP_MOD <cast_izraz>")) {
 			MultiplikativniIzraz multiplikativniIzraz = new MultiplikativniIzraz(trenutniCvor.getDjeca().get(0));
 			multiplikativniIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(multiplikativniIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(multiplikativniIzraz.getTip())
 					.contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			CastIzraz castIzraz = new CastIzraz(trenutniCvor.getDjeca().get(2));
 			castIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(castIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if(!SemantickiAnalizator.implicitnaPretvorba.get(castIzraz.getTip())
 					.contains("int")) SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			tip = "int";

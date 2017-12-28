@@ -16,6 +16,8 @@ public class NaredbaPetlje implements CvorAtributnogStabla {
 			Izraz izraz = new Izraz(trenutniCvor.getDjeca().get(2));
 			izraz.provjeri();
 
+			if(SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if (!SemantickiAnalizator.implicitnaPretvorba.get(izraz.getTip()).contains("int")) {
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			}
@@ -30,6 +32,9 @@ public class NaredbaPetlje implements CvorAtributnogStabla {
 			IzrazNaredba izrazNaredba2 = new IzrazNaredba(trenutniCvor.getDjeca().get(3));
 			izrazNaredba2.provjeri();
 
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(izrazNaredba2.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if (!SemantickiAnalizator.implicitnaPretvorba.get(izrazNaredba2.getTip()).contains("int")) {
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			}
@@ -43,7 +48,10 @@ public class NaredbaPetlje implements CvorAtributnogStabla {
 
 			IzrazNaredba izrazNaredba2 = new IzrazNaredba(trenutniCvor.getDjeca().get(3));
 			izrazNaredba2.provjeri();
+			
 
+			if(SemantickiAnalizator.implicitnaPretvorba.get(izrazNaredba2.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if (!SemantickiAnalizator.implicitnaPretvorba.get(izrazNaredba2.getTip()).contains("int")) {
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			}

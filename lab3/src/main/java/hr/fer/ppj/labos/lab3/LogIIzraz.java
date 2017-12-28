@@ -17,10 +17,16 @@ public class LogIIzraz extends Izraz implements CvorAtributnogStabla{
 		} else if (desnaStranaProdukcije.equals("<log_i_izraz> OP_I <bin_ili_izraz>")) {
 			LogIIzraz logIIzraz = new LogIIzraz(trenutniCvor.getDjeca().get(0));
 			logIIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(logIIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if (!SemantickiAnalizator.implicitnaPretvorba.get(logIIzraz.getTip()).contains("int"))
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			BinIliIzraz binIliIzraz = new BinIliIzraz(trenutniCvor.getDjeca().get(2));
 			binIliIzraz.provjeri();
+
+			if(SemantickiAnalizator.implicitnaPretvorba.get(binIliIzraz.getTip()) == null)
+				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			if (!SemantickiAnalizator.implicitnaPretvorba.get(binIliIzraz.getTip()).contains("int"))
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
 			tip = "int";

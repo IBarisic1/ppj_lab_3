@@ -17,7 +17,7 @@ public class DefinicijaFunkcije implements CvorAtributnogStabla {
 			ImeTipa imeTipa = new ImeTipa(trenutniCvor.getDjeca().get(0));
 			imeTipa.provjeri();
 
-			List T = Arrays.asList(new String[] { "int", "char" });
+			List<String> T = Arrays.asList(new String[] { "int", "char" });
 			if (imeTipa.getTip().startsWith("const(") && imeTipa.getTip().endsWith(")")
 					&& T.contains(imeTipa.getTip().substring(6, imeTipa.getTip().length() - 1))) {
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);
@@ -51,7 +51,7 @@ public class DefinicijaFunkcije implements CvorAtributnogStabla {
 			ImeTipa imeTipa = new ImeTipa(trenutniCvor.getDjeca().get(0));
 			imeTipa.provjeri();
 
-			List T = Arrays.asList(new String[] { "int", "char" });
+			List<String> T = Arrays.asList(new String[] { "int", "char" });
 			if (imeTipa.getTip().startsWith("const(") && imeTipa.getTip().endsWith(")")
 					&& T.contains(imeTipa.getTip().substring(6, imeTipa.getTip().length() - 1))) {
 				SemantickiAnalizator.ispisiGreskuUProdukciji(trenutniCvor);

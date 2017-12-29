@@ -44,7 +44,7 @@ public class SemantickiAnalizator {
 		//ispravio ispitivanje tako da ako nema nista u tablici baca gresku
 		Scanner sc = new Scanner(System.in);
 
-		ParserGenerativnogStabla parser = new ParserGenerativnogStabla(sc);
+		ParserGenerativnogStabla parser = new ParserGenerativnogStabla();
 
 		GenerativnoStablo gen = parser.parsirajStablo();
 		

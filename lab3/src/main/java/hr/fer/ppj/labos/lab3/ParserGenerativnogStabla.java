@@ -12,8 +12,13 @@ public class ParserGenerativnogStabla {
 		List<String> sviZapisiGenerativnogStabla = new ArrayList<>();
 
 		try (Scanner s = new Scanner(System.in)) {
+			String sljedecaLinija;
 			while (s.hasNextLine()) {
-				sviZapisiGenerativnogStabla.add(s.nextLine());
+				sljedecaLinija = s.nextLine();
+				if (sljedecaLinija.isEmpty()) {
+					break;
+				}
+				sviZapisiGenerativnogStabla.add(sljedecaLinija);
 			}
 		}
 
